@@ -20,8 +20,12 @@ bool validate_checksum(uint8_t digits[], uint64_t len)
 
 int main(void)
 {
-    uint64_t raw_value = get_long("Number: ");
-    uint8_t raw_digits[16] = { 0 };
+
+    uint64_t raw_value = LONG_MAX;
+    do {
+        raw_value = get_long("Number: ");
+    } while (raw_value == LONG_MAX);
+    uint8_t raw_digits[24] = { 0 };
     uint64_t len = 0;
     while (raw_value > 0) { 
         uint64_t rem = raw_value % 10;
@@ -31,7 +35,7 @@ int main(void)
     }
 
     //swap the digits so we can just chop off the LSByte
-    uint8_t digits[16] = { 0 };
+    uint8_t digits[24] = { 0 };
     uint64_t offset = len - 1;
     for (uint64_t i = 0; i < len; i++) {
         digits[i] = raw_digits[offset];
