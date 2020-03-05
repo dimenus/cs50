@@ -38,8 +38,6 @@ typedef struct LargeHash {
     uint64_t low;
 } LargeHash;
 
-
-
 /**
  * Loads dictionary into memory. Returns true if successful else false.
  */
